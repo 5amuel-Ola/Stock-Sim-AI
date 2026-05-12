@@ -12,6 +12,10 @@ import { authenticate, authenticateOptional } from './middleware/auth.middleware
 import { errorHandler }     from './middleware/error.middleware'
 import { logger }           from './lib/logger'
 
+function normalizeOrigin(origin: string) {
+  return origin.replace(/\/+$/, '')
+}
+
 export function buildApp() {
   const app = express()
   app.set('trust proxy', 1)
@@ -22,11 +26,13 @@ export function buildApp() {
       .split(',')
       .map(origin => origin.trim())
       .filter(Boolean),
-  ]))
+  ].map(normalizeOrigin)))
 
   app.use(cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      const normalizedOrigin = origin ? normalizeOrigin(origin) : origin
+
+      if (!normalizedOrigin || allowedOrigins.includes(normalizedOrigin)) {
         callback(null, true)
         return
       }
