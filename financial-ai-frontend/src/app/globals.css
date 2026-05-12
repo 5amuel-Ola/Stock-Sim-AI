@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Swiss International Style */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-white text-black;
+  }
+
+  /* High contrast text hierarchy */
+  h1 {
+    @apply font-bold text-3xl leading-tight tracking-tight;
+  }
+
+  h2 {
+    @apply font-bold text-2xl leading-snug tracking-tight;
+  }
+
+  h3 {
+    @apply font-semibold text-lg leading-snug;
+  }
+
+  /* Reduce visual noise */
+  @supports (font-variation-settings: normal) {
+    body {
+      font-variation-settings: 'wght' 400;
+    }
+    strong,
+    b,
+    .font-bold {
+      font-variation-settings: 'wght' 700;
+    }
+  }
+}
+
+@layer components {
+  /* Grid-based spacing (8px baseline) */
+  .swiss-container {
+    @apply max-w-7xl mx-auto px-8 py-8;
+  }
+
+  .swiss-section {
+    @apply space-y-8;
+  }
+
+  .swiss-grid {
+    @apply grid gap-8;
+  }
+
+  /* Geometric, minimal cards */
+  .swiss-card {
+    @apply rounded-2xl border border-black/10 bg-white/85 p-8 shadow-[0_24px_80px_rgba(0,0,0,0.08)] backdrop-blur;
+  }
+
+  .swiss-card-compact {
+    @apply rounded-2xl border border-black/10 bg-white/85 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.06)] backdrop-blur;
+  }
+
+  /* Functional buttons */
+  .swiss-btn {
+    @apply rounded-lg border border-black bg-white px-6 py-2 font-medium text-black transition-colors hover:bg-black hover:text-white;
+  }
+
+  .swiss-btn-primary {
+    @apply rounded-lg border border-black bg-black px-6 py-2 font-medium text-white transition-colors hover:bg-transparent hover:text-black;
+  }
+
+  .swiss-btn-sm {
+    @apply rounded-lg border border-black/15 bg-white/90 px-4 py-1.5 text-sm font-medium text-black transition-colors hover:border-black hover:bg-[#f6efdf];
+  }
+
+  /* Clean input styling */
+  .swiss-input {
+    @apply rounded-lg border border-black/15 bg-white/95 px-4 py-2 font-normal shadow-[0_8px_24px_rgba(0,0,0,0.04)] focus:outline-none focus:border-black focus:ring-1 focus:ring-black/20;
+  }
+
+  /* Minimal divider */
+  .swiss-divider {
+    @apply border-t border-black/10;
+  }
+
+  /* Clean tag/badge */
+  .swiss-badge {
+    @apply inline-block rounded-full border border-black/15 bg-[#fbf7ee]/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-black/75;
+  }
+}
