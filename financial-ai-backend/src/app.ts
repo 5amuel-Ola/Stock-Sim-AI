@@ -14,6 +14,7 @@ import { logger }           from './lib/logger'
 
 export function buildApp() {
   const app = express()
+  app.set('trust proxy', 1)
   const allowedOrigins = Array.from(new Set([
     'http://localhost:3000',
     'http://localhost:3002',
